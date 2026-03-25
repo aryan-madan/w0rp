@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>w0rp</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body>
+  <main>
+    <h1>w<span>0</span>rp</h1>
+
+    <canvas id="waveform"></canvas>
+
+    <div classs="pitch">
+      <span class="pitch-hz" id="pitchHz">-</span>
+      <span class="pitch-note" id="pitchNote">no signal</span>
+    </div>
+
+    <div class="confidence">
+      <span class="conf-label">confidence</span>
+      <div class="" conf-track>
+        <div class="conf-fill" id="confFill"></div>
+      </div>
+    </div>
+
+    <button id="startBtn">init mic</button>
+    <p class="status" id="status">idle</p>
+  </main>
+
+  <div id="app"></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
