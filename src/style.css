@@ -2,22 +2,15 @@
 
 :root {
   --bg: #ffffff;
-  --fg: #0a0a0a;
+  --fg: #111111;
   --accent: #0047ff;
-  --border: #e5e5e5;
-  --subtle: #888888;
-  --gutter: 24px;
-  --sidebar-w: 280px;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  --border: #f0f0f0;
+  --subtle: #a0a0a0;
 }
 
 body {
   height: 100vh;
+  margin: 0;
   background: var(--bg);
   color: var(--fg);
   font-family: 'Inter', sans-serif;
@@ -25,95 +18,89 @@ body {
   overflow: hidden;
 }
 
-.app-container {
-  display: flex;
-  flex-direction: column;
+main {
+  display: grid;
+  grid-template-columns: 1fr 300px; 
+  grid-template-rows: auto 1fr 120px; 
   height: 100vh;
-  padding: var(--gutter);
+  padding: 40px;
+  gap: 40px;
+  box-sizing: border-box;
 }
 
 header {
+  grid-row: 1; 
+  grid-column: 1 / -1;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding-bottom: var(--gutter);
+  align-items: baseline;
   border-bottom: 1px solid var(--border);
-  flex-shrink: 0;
+  padding-bottom: 20px;
 }
 
 h1 {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.5em;
+  letter-spacing: 0.3em;
+  margin: 0;
 }
 
 .status {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
+  text-transform: uppercase;
   color: var(--subtle);
 }
 
-main {
-  display: flex;
-  flex: 1;
-  gap: var(--gutter);
-  padding: var(--gutter) 0;
-}
-
 .stage {
-  flex: 1;
+  grid-row: 2;
+  grid-column: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  position: relative;
 }
 
 .pitch-hz {
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(80px, 18vw, 240px);
+  font-size: clamp(100px, 18vw, 220px);
   font-weight: 700;
   line-height: 0.8;
-  letter-spacing: -0.07em;
-  margin-left: -0.05em; 
+  letter-spacing: -0.05em;
+  margin-left: -10px;
 }
 
 .pitch-note {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.2em;
+  font-size: 16px;
   color: var(--accent);
-  margin-top: 16px;
-  padding: 4px 8px;
-  border: 1px solid var(--accent);
+  margin-top: 10px;
+  font-weight: 500;
 }
 
 .sidebar {
-  width: var(--sidebar-w);
+  grid-row: 2; 
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 60px;
   border-left: 1px solid var(--border);
-  padding-left: var(--gutter);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; 
-}
-
-.controls-group {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+  padding-left: 40px;
 }
 
 .confidence {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 }
 
 .conf-label {
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: var(--subtle);
 }
 
@@ -126,41 +113,58 @@ main {
 .conf-fill {
   height: 100%;
   background: var(--fg);
-  transition: width 0.2s ease;
+  transition: width 0.1s ease;
 }
 
-footer {
+.footer {
+  grid-row: 3; 
+  grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: 1fr var(--sidebar-w);
-  gap: var(--gutter);
+  grid-template-columns: 1fr 300px;
   align-items: center;
-  padding-top: var(--gutter);
+  gap: 40px;
   border-top: 1px solid var(--border);
-  flex-shrink: 0;
+  padding-top: 20px;
 }
 
 #waveform {
-  height: 32px;
-  background: #fcfcfc;
-  border: 1px solid #f0f0f0;
+  width: 100%;
+  height: 60px;
+  opacity: 0.6;
 }
 
 button {
   all: unset;
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  font-weight: 500;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 18px;
+  text-align: center;
   border: 1px solid var(--fg);
   cursor: pointer;
   transition: 0.2s;
-  text-transform: uppercase;
 }
 
 button:hover {
   background: var(--fg);
   color: var(--bg);
 }
+
+.camera-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: #000;
+}
+ 
+.camera-wrap video,
+.camera-wrap canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+ 

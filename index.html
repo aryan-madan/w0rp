@@ -1,38 +1,50 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>w0rp</title>
   <link rel="stylesheet" href="/src/style.css" />
 </head>
-
 <body>
   <main>
-    <h1>w<span>0</span>rp</h1>
+    <header>
+      <h1>w<span>0</span>rp</h1>
+      <p class="status" id="status">idle</p>
+    </header>
 
-    <canvas id="waveform"></canvas>
-
-    <div class="pitch">
-      <span class="pitch-hz" id="pitchHz">-</span>
-      <span class="pitch-note" id="pitchNote">no signal</span>
+    <div class="stage">
+      <div class="pitch-hz" id="pitchHz">—</div>
+      <div class="pitch-note" id="pitchNote"></div>
     </div>
 
-    <div class="confidence">
-      <span class="conf-label">confidence</span>
-      <div class="conf-track">
-        <div class="conf-fill" id="confFill"></div>
+    <div class="sidebar">
+      <div class="camera-wrap">
+        <video id="handVideo" playsinline muted></video>
+        <canvas id="handCanvas"></canvas>
       </div>
+
+      <div class="meter">
+        <span class="meter-label">confidence</span>
+        <div class="conf-track"><div class="conf-fill" id="confFill"></div></div>
+      </div>
+      <div class="meter">
+        <span class="meter-label">left hand</span>
+        <div class="conf-track"><div class="conf-fill" id="leftFill"></div></div>
+      </div>
+      <div class="meter">
+        <span class="meter-label">right hand</span>
+        <div class="conf-track"><div class="conf-fill" id="rightFill"></div></div>
+      </div>
+
+      <button id="startBtn">init</button>
     </div>
 
-    <button id="startBtn">init mic</button>
-    <p class="status" id="status">idle</p>
+    <div class="footer">
+      <canvas id="waveform"></canvas>
+    </div>
   </main>
 
-  <div id="app"></div>
   <script type="module" src="/src/main.ts"></script>
 </body>
-
 </html>
